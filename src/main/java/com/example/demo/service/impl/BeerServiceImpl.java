@@ -2,6 +2,7 @@ package com.example.demo.service.impl;
 
 
 import com.example.demo.service.BeerService;
+import com.example.demo.web.model.BeerStyleEnum;
 import com.example.demo.web.model.dto.BeerDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +19,7 @@ public class BeerServiceImpl implements BeerService  {
 
         return BeerDto.builder().id(UUID.randomUUID())
                 .beerName("beerName 1")
-                .beerStyle("beer style 1")
+                .beerStyle(BeerStyleEnum.ALE)
                 .build();
     }
 
