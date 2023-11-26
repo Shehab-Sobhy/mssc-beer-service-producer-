@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.UUID;
 
-
+// jpa entity for beer object
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -44,6 +44,11 @@ public class Beer {
 
     @Column(unique = true)
     private Long upc;
-    private BigDecimal quantityToBrew;
+
+
+    private BigDecimal price;
+
+    private Integer minOnHand;  // minimum quantity on hand
+    private Integer quantityToBrew;
 
 }

@@ -9,6 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -24,7 +28,7 @@ public class CustomerController {
     }
 
     @PostMapping("")
-    public ResponseEntity handleCustomerPost(@RequestBody CustomerDTO CustomerDTO) {
+    public ResponseEntity handleCustomerPost(@Valid @RequestBody CustomerDTO CustomerDTO) {
         // instead of returning the response req
         //return ResponseEntity.ok(beerService.saveNewBeer(beerDto));
         CustomerDTO saveCustomerDto = service.saveCustomer(CustomerDTO);
@@ -35,7 +39,7 @@ public class CustomerController {
     }
 
     @PutMapping("/{customerId}")
-    public ResponseEntity handleCustomerUpdate(@PathVariable UUID customerId, @RequestBody CustomerDTO customerDTO) {
+    public ResponseEntity handleCustomerUpdate(@PathVariable UUID customerId, @Valid @RequestBody CustomerDTO customerDTO) {
         return new  ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
@@ -44,6 +48,10 @@ public class CustomerController {
     public void deleteBeer(@PathVariable UUID customerId) {
         service.deleteById(customerId);
 
-
     }
+
+
+
+
+
 }
