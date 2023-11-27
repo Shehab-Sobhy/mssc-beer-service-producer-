@@ -12,6 +12,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import static org.hamcrest.core.Is.is;
@@ -56,16 +57,12 @@ public class BeerControllerTest {
     }
 
     @Test
-    public void handlePost() throws Exception {
+    public void saveNewBeer() throws Exception {
         //given
-        BeerDto beerDto = validBeer;
-        beerDto.setId(null);
-        BeerDto savedDto = BeerDto.builder().id(UUID.randomUUID()).build();
+        BeerDto beerDto = getValidBeer();
         String beerDtoJson = objectMapper.writeValueAsString(beerDto);
 
-        given(beerService.saveNewBeer(any())).willReturn(savedDto);
-
-        mockMvc.perform(post("/api/v1/beer/"+ UUID.randomUUID())
+        mockMvc.perform(post("/api/v1/beer/")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(beerDtoJson))
                 .andExpect(status().isCreated());
@@ -73,10 +70,9 @@ public class BeerControllerTest {
     }
 
     @Test
-    public void handleUpdate() throws Exception {
+    public void updateByBeerId() throws Exception {
         //given
-        BeerDto beerDto = validBeer;
-//        beerDto.setId(null);
+        BeerDto beerDto = getValidBeer();
         String beerDtoJson = objectMapper.writeValueAsString(beerDto);
 
         //when
@@ -84,8 +80,16 @@ public class BeerControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(beerDtoJson))
                 .andExpect(status().isNoContent());
+    }
 
-//        then(beerService).should().updateBeer(any(), any());
+    BeerDto getValidBeer (){
+        return BeerDto.builder()
+                .beerName("My Beer")
+                .beerStyle(BeerStyleEnum.ALE)
+                .price(new BigDecimal(123123123L))
+                .upc(123123123L)
+                .build();
 
     }
+
 }
