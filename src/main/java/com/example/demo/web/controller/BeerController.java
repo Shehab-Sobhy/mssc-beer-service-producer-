@@ -28,8 +28,8 @@ public class  BeerController {
     }
 
 
-    @PostMapping("/{beerId}")
-    public ResponseEntity handlePost(@Valid @RequestBody BeerDto beerDto, @PathVariable UUID beerId) {
+    @PostMapping("")
+    public ResponseEntity handlePost( @RequestBody BeerDto beerDto) {
         // instead of returning the response req
         //return ResponseEntity.ok(beerService.saveNewBeer(beerDto));
         BeerDto saveDto = beerService.saveNewBeer(beerDto);
@@ -37,7 +37,8 @@ public class  BeerController {
         // we are gonna return location header on it
         // TODO add hostname to url
          HttpHeaders   headers = new HttpHeaders();
-        headers.add("Location","/api/v1/beer/" + beerId.toString());
+//        beerDto.getId().toString()
+        headers.add("Location","/api/v1/beer/" + UUID.randomUUID() );
         return new ResponseEntity(headers,HttpStatus.CREATED);
     }
 

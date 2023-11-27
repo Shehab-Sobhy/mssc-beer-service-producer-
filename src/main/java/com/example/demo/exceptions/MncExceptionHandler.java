@@ -31,4 +31,7 @@ public class MncExceptionHandler {
 
         return new ResponseEntity<>(ex.getAllErrors() , HttpStatus.BAD_REQUEST);
     }
+
+
+
 }
