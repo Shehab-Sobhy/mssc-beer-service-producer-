@@ -1,6 +1,7 @@
 package com.example.demo.web.model.dto;
 
 import com.example.demo.web.model.BeerStyleEnum;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,14 +41,17 @@ public class BeerDto {
 //   so now when this pojo is being bound we are saying this must be null so
 //     we wont somebody to set this property's from this outside word
     // if somebody does try to set them is gonna fail our validation
-    @Null
+     @Null
     UUID id;
     @Null
     Integer version;
 
     @Null
+    @JsonFormat(pattern = "yyyy-MM-dd'T':HH:mm:ssZ" , shape = JsonFormat.Shape.STRING)
     private OffsetDateTime createData;
+
     @Null
+    @JsonFormat(pattern = "yyyy-MM-dd'T':HH:mm:ssZ" , shape = JsonFormat.Shape.STRING)
     private OffsetDateTime lastModifiedDate;
 
 
@@ -65,6 +69,7 @@ public class BeerDto {
 
 
 
+ @JsonFormat(shape = JsonFormat.Shape.STRING)
     @NotNull
     @Positive
     private BigDecimal price;
