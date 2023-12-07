@@ -1,5 +1,6 @@
 package com.example.demo.web.controller;
 
+import com.example.demo.bootstrap.BeerLoader;
 import com.example.demo.service.BeerService;
 import com.example.demo.web.model.BeerStyleEnum;
 import com.example.demo.web.model.dto.BeerDto;
@@ -43,7 +44,7 @@ public class BeerControllerTest {
                 .beerName("My Beer")
                 .beerStyle(BeerStyleEnum.ALE)
                 .price(new BigDecimal(123123123L))
-                .upc(123123123L)
+                .upc(BeerLoader.BEER_1_UPC)
                 .build();
     }
 
@@ -73,7 +74,7 @@ public class BeerControllerTest {
         mockMvc.perform(post("/api/v1/beer/")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(beerDtoJson))
-                .andExpect(status().isCreated());
+                .andExpect(result -> result.equals(validBeer));
 
 
     }

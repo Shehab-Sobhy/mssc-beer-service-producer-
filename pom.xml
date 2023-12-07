@@ -49,6 +49,16 @@
 			<artifactId>mapstruct</artifactId>
 			<version>1.6.0.Beta1</version>
 		</dependency>
+<!--		Parameter 1 of constructor in xxx.service.impl.SegnalazioneServiceImpl required a bean of type -->
+<!--		'xxx.mapper.SegnalazioneMapper' that could not be found.-->
+<!--		Action:-->
+<!--		Consider defining a bean of type 'xxx.mapper.SegnalazioneMapper' in your configuration.-->
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>1.4.2.Final</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

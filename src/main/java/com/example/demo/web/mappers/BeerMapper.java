@@ -10,6 +10,7 @@ import org.mapstruct.ReportingPolicy;
 //bean BeerMapper but Mapstruct do not generate a spring bean by default
 //@Mapper(componentModel = "spring") annotation to your BeerMapper interface.
 // This explicitly tells MapStruct to generate Spring components.
+// + in maven add dep <artifactId>mapstruct-processor</artifactId>
 
 
 public interface BeerMapper {
